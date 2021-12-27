@@ -15,9 +15,6 @@ const {autoUpdater} = require("electron-updater");
 //-------------------------------------------------------------------
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-autoUpdater.netSession.setProxy({
-  proxyRules: 'http://10.158.100.3:8080'
-});
 log.info('App starting...');
 
 //-------------------------------------------------------------------
@@ -118,6 +115,9 @@ app.on('window-all-closed', () => {
 // app quits.
 //-------------------------------------------------------------------
 app.on('ready', function()  {
+  autoUpdater.netSession.setProxy({
+    proxyRules: 'http://10.158.100.3:8080'
+  });
   autoUpdater.checkForUpdatesAndNotify();
 });
 
